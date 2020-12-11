@@ -5,8 +5,14 @@ import React from 'react';
 
 //sınıf component
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+
+    //this App componentinden referans alıyor
+    this.state = { title: 'Hello Constructor' };
+  }
   render() {
-    return <div>Hello React Class Component </div>;
+    return <div>{this.state.title} </div>;
   }
 }
 export default App;
