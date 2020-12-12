@@ -14,7 +14,7 @@ export default function Images() {
   function ShowImage(params) {
     return images.map(image => {
       return (
-        <div className='W-1/3'>
+        <div className='w-1/3 my-4'>
           <img src={image} width='150' />
         </div>
       );
@@ -23,11 +23,13 @@ export default function Images() {
 
   // improve separate
   function handleAdd() {
-    setimages([newImageUrl, ...images]);
+    if (newImageUrl !== '') {
+      setimages([newImageUrl, ...images]);
 
-    //input value null deger alamadıgı ıcın
-    //ayrıca ınputu temızler
-    setnewImageUrl('');
+      //input value null deger alamadıgı ıcın
+      //ayrıca ınputu temızler
+      setnewImageUrl('');
+    }
   }
 
   function handleChange(event) {
@@ -36,7 +38,7 @@ export default function Images() {
 
   return (
     <section>
-      <div className='flex  flex-wrap justify-center'>
+      <div className='flex  flex-wrap justify-center  mx-5 '>
         <ShowImage />
       </div>
       <div className='flex justify-between my-5 '>

@@ -30,9 +30,10 @@ function App() {
   return (
     <section className='flex justify-center'>
       {console.log('re-rendred')}
-      <div className='w-1/2'>
-        <div className='my-4'>{title}</div>
+      <div className='w-10/12'>
         <div className='text-center'>
+          <div className='my-4'>{title}</div>
+
           <button
             className='p-1 bg-blue-700 text-white my-2'
             onClick={handleClick}
