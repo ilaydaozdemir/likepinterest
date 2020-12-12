@@ -27,8 +27,8 @@ export default function Images() {
     ]);
   }
 
-  function handleChange() {
-    console.log('working input');
+  function handleChange(event) {
+    console.log(event.target.value);
   }
 
   return (
