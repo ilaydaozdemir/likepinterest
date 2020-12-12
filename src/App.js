@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 import './assets/css/style.css';
 import Images from './components/Images';
@@ -8,10 +8,20 @@ function App() {
   //hook
   const [title, setTitle] = useState('Hello Hook');
   const [isShowing, setIsShowing] = useState(false);
+  const mountRef = useRef(false);
 
   useEffect(() => {
-    console.log('useEffect');
+    console.log('App Mounted');
   }, []);
+
+  //Component will Update
+  useEffect(() => {
+    if (mountRef.current) {
+      console.log('App Updated');
+    } else {
+      mountRef.current = true;
+    }
+  }, [isShowing]);
 
   function handleClick() {
     setIsShowing(!isShowing);
@@ -19,6 +29,7 @@ function App() {
 
   return (
     <section className='flex justify-center'>
+      {console.log('re-rendred')}
       <div className='w-1/2'>
         <div className='my-4'>{title}</div>
         <div className='text-center'>
