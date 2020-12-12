@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import './assets/css/style.css';
 import Images from './components/Images';
@@ -8,6 +8,10 @@ function App() {
   //hook
   const [title, setTitle] = useState('Hello Hook');
   const [isShowing, setIsShowing] = useState(false);
+
+  useEffect(() => {
+    console.log('useEffect');
+  }, []);
 
   function handleClick() {
     setIsShowing(!isShowing);
