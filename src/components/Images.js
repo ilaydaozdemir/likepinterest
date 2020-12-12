@@ -8,16 +8,21 @@ export default function Images() {
     'https://cdn.pixabay.com/photo/2020/11/17/15/44/cup-5752775_960_720.jpg',
   ];
 
+  //inner Component
+  function ShowImage(params) {
+    return Images.map(image => {
+      return (
+        <div>
+          <img src={image} width='150' />
+        </div>
+      );
+    });
+  }
+
   return (
     <section>
       <div className='flex justify-center'>
-        {Images.map(image => {
-          return (
-            <div>
-              <img src={image} width='150' />
-            </div>
-          );
-        })}
+        <ShowImage />
       </div>
     </section>
   );
