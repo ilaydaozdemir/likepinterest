@@ -1,46 +1,24 @@
 import React, { useEffect, useState } from 'react';
 
 export default function Images() {
-  // const [myInterval, setmyInterval] = useState(null);
-
-  useEffect(() => {
-    console.log('Images Comp Mounted');
-
-    const interval = setInterval(() => {
-      console.log('hello');
-    }, 1000);
-    return () => {
-      clearInterval(interval);
-    };
-  }, []);
+  const Images = [
+    'https://cdn.pixabay.com/photo/2020/09/17/05/19/women-5578067_960_720.jpg',
+    'https://cdn.pixabay.com/photo/2020/01/03/21/32/hoarfrost-4739176_960_720.jpg',
+    'https://cdn.pixabay.com/photo/2015/06/19/21/24/the-road-815297_960_720.jpg',
+    'https://cdn.pixabay.com/photo/2020/11/17/15/44/cup-5752775_960_720.jpg',
+  ];
 
   return (
-    <img src='https://cdn.pixabay.com/photo/2020/06/07/17/19/child-5271290_960_720.jpg' />
+    <section>
+      <div className='flex justify-center'>
+        {Images.map(image => {
+          return (
+            <div>
+              <img src={image} width='150' />
+            </div>
+          );
+        })}
+      </div>
+    </section>
   );
 }
-
-// export default class Images extends Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = { interval: null };
-//   }
-
-//   componentDidMount() {
-//     console.log('Images Comp Mounted');
-//     this.setState({
-//       interval: setInterval(() => {
-//         console.log('hello');
-//       }, 1000),
-//     });
-//   }
-
-//   componentWillUnmount() {
-//     console.log('Images Comp Unmounted');
-//     clearInterval(this.state.interval);
-//   }
-//   render() {
-//     return (
-//       <img src='https://cdn.pixabay.com/photo/2020/06/07/17/19/child-5271290_960_720.jpg' />
-//     );
-//   }
-// }
