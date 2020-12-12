@@ -18,11 +18,15 @@ class App extends React.Component {
 
     //this App componentinden referans alıyor
     this.state = { title: 'Hello Constructor', isShowing: false };
+
+    //handleClick'i normal bır fonk. olarak tanımlamak istersek
+    //this degerini goremez bu yuzden bind ile fonk.nu baglamamız gerekir.
+    this.handleClick = this.handleClick.bind(this);
   }
 
-  handleClick = () => {
+  handleClick() {
     this.setState({ isShowing: !this.state.isShowing });
-  };
+  }
 
   render() {
     return (
