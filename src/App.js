@@ -19,6 +19,11 @@ class App extends React.Component {
     //this App componentinden referans alıyor
     this.state = { title: 'Hello Constructor', isShowing: false };
   }
+
+  handleClick = () => {
+    this.setState({ isShowing: !this.state.isShowing });
+  };
+
   render() {
     return (
       <section className='flex justify-center'>
@@ -27,9 +32,7 @@ class App extends React.Component {
           <div className='text-center'>
             <button
               className='p-1 bg-blue-700 text-white my-2'
-              onClick={() => {
-                this.setState({ isShowing: !this.state.isShowing });
-              }}
+              onClick={this.handleClick}
             >
               Toogle Image
             </button>
