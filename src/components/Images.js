@@ -23,6 +23,7 @@ export default function Images() {
 
   // improve separate
   function handleAdd() {
+    //input un içi bos mu kontrol edıyorum
     if (newImageUrl !== '') {
       setimages([newImageUrl, ...images]);
 
@@ -48,7 +49,12 @@ export default function Images() {
           value={newImageUrl}
           onChange={handleChange}
         />
-        <button className='p-2 bg-green-600 text-white' onClick={handleAdd}>
+        <button
+          className={`p-2  text-white ${
+            newImageUrl !== '' ? 'bg-green-600' : 'bg-green-300'
+          }`}
+          onClick={handleAdd}
+        >
           Add new
         </button>
       </div>
