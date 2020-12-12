@@ -12,7 +12,7 @@ export default function Images() {
   function ShowImage(params) {
     return images.map(image => {
       return (
-        <div>
+        <div className='W-1/3'>
           <img src={image} width='150' />
         </div>
       );
@@ -27,15 +27,20 @@ export default function Images() {
     ]);
   }
 
+  function handleChange() {
+    console.log('working input');
+  }
+
   return (
     <section>
-      <div className='flex justify-center'>
+      <div className='flex  flex-wrap justify-center'>
         <ShowImage />
       </div>
       <div className='flex justify-between my-5 '>
         <input
           type='text'
           className='p-2 border border-gray-800 shadow rounded'
+          onChange={handleChange}
         />
         <button className='p-2 bg-green-600 text-white' onClick={handleAdd}>
           Add new
