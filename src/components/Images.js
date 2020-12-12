@@ -8,7 +8,7 @@ export default function Images() {
     'https://cdn.pixabay.com/photo/2020/11/17/15/44/cup-5752775_960_720.jpg',
   ]);
 
-  const [newImageUrl, setnewImageUrl] = useState(null);
+  const [newImageUrl, setnewImageUrl] = useState('');
 
   //inner Component
   function ShowImage(params) {
@@ -24,6 +24,10 @@ export default function Images() {
   // improve separate
   function handleAdd() {
     setimages([newImageUrl, ...images]);
+
+    //input value null deger alamadıgı ıcın
+    //ayrıca ınputu temızler
+    setnewImageUrl('');
   }
 
   function handleChange(event) {
@@ -39,6 +43,7 @@ export default function Images() {
         <input
           type='text'
           className='p-2 border border-gray-800 shadow rounded'
+          value={newImageUrl}
           onChange={handleChange}
         />
         <button className='p-2 bg-green-600 text-white' onClick={handleAdd}>
