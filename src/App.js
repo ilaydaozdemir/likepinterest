@@ -1,6 +1,7 @@
 import React from 'react';
 
 import './assets/css/style.css';
+import Images from './components/Images';
 
 //fonksiyonel component
 // function App({ title }) {
@@ -18,15 +19,11 @@ class App extends React.Component {
 
     //this App componentinden referans alıyor
     this.state = { title: 'Hello Constructor', isShowing: false };
-
-    //handleClick'i normal bır fonk. olarak tanımlamak istersek
-    //this degerini goremez bu yuzden bind ile fonk.nu baglamamız gerekir.
-    this.handleClick = this.handleClick.bind(this);
   }
 
-  handleClick() {
+  handleClick = () => {
     this.setState({ isShowing: !this.state.isShowing });
-  }
+  };
 
   render() {
     return (
@@ -41,9 +38,7 @@ class App extends React.Component {
               Toogle Image
             </button>
           </div>
-          {this.state.isShowing ? (
-            <img src='https://cdn.pixabay.com/photo/2020/06/07/17/19/child-5271290_960_720.jpg' />
-          ) : null}
+          {this.state.isShowing ? <Images /> : null}
         </div>
       </section>
     );
