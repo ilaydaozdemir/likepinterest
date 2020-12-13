@@ -10,12 +10,16 @@ export default function Images() {
 
   const [newImageUrl, setnewImageUrl] = useState('');
 
+  function handleRemove(index) {
+    setimages(images.filter((image, i) => i !== index));
+  }
+
   //inner Component
   function ShowImage(params) {
-    return images.map(image => {
+    return images.map((image, index) => {
       return (
-        <div className='w-1/3 my-4'>
-          <img src={image} width='150' />
+        <div className='w-1/3 my-4 flex justify-center' key={index}>
+          <img src={image} width='150' onClick={() => handleRemove(index)} />
         </div>
       );
     });
@@ -43,20 +47,26 @@ export default function Images() {
         <ShowImage />
       </div>
       <div className='flex justify-between my-5 '>
-        <input
-          type='text'
-          className='p-2 border border-gray-800 shadow rounded'
-          value={newImageUrl}
-          onChange={handleChange}
-        />
-        <button
-          className={`p-2  text-white ${
-            newImageUrl !== '' ? 'bg-green-600' : 'bg-green-300'
-          }`}
-          onClick={handleAdd}
-        >
-          Add new
-        </button>
+        <div className='w-full'>
+          {' '}
+          <input
+            type='text'
+            className='p-2 border border-gray-800 shadow rounded w-full'
+            value={newImageUrl}
+            onChange={handleChange}
+          />
+        </div>
+        <div className=''>
+          <button
+            disabled={newImageUrl === ''}
+            className={`p-2  text-white  ml-2 ${
+              newImageUrl !== '' ? 'bg-green-600' : 'bg-green-300'
+            }`}
+            onClick={handleAdd}
+          >
+            Add
+          </button>
+        </div>
       </div>
     </section>
   );
