@@ -19,7 +19,7 @@ export default function Images() {
     ]);
   }
 
-  const [isHovering, setIsHovering] = useState(false);
+  const [isHovering, setIsHovering] = useState(-1);
 
   //inner Component
   function ShowImage(params) {
@@ -30,15 +30,15 @@ export default function Images() {
             {/* icon ekleme */}
             <i
               className={`fas fa-times absolute right-0 cursor-pointer opacity-25 hover:opacity-100 ${
-                isHovering ? '' : 'hidden'
+                isHovering === index ? '' : 'hidden'
               }`}
               onClick={() => handleRemove(index)}
             ></i>
             <img
               src={image}
               width='150'
-              onMouseEnter={() => setIsHovering(true)}
-              onMouseLeave={() => setIsHovering(false)}
+              onMouseEnter={() => setIsHovering(index)}
+              onMouseLeave={() => setIsHovering(-1)}
             />
           </div>
         </div>
