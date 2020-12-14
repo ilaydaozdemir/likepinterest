@@ -23,7 +23,12 @@ export default function Images() {
   //inner Component
   function ShowImage(params) {
     return images.map((img, index) => (
-      <Image image={img} handleRemove={handleRemove} index={index} />
+      <Image
+        image={img}
+        handleRemove={handleRemove}
+        index={index}
+        key={index}
+      />
     ));
   }
 
