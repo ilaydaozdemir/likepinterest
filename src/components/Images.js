@@ -1,19 +1,14 @@
-import Axios from 'axios';
 import React, { useEffect, useRef, useState } from 'react';
+import useFetchImage from '../utils/hooks/useFetchImage';
 import Image from './image';
 
 export default function Images() {
-  const [images, setimages] = useState([]);
+  const [images, setImages] = useFetchImage();
 
   const inputRef = useRef(null);
 
   useEffect(() => {
     inputRef.current.focus();
-    Axios.get(
-      `https://api.unsplash.com/photos/?client_id=${process.env.REACT_APP_UNSPLASH_KEY}`
-    ).then(res => {
-      setimages(res.data);
-    });
   }, []);
 
   const [newImageUrl, setnewImageUrl] = useState('');
@@ -21,7 +16,7 @@ export default function Images() {
   function handleRemove(index) {
     //setimages(images.filter((image, i) => i !== index));
 
-    setimages([
+    setImages([
       ...images.slice(0, index),
       ...images.slice(index + 1, images.length),
     ]);
@@ -40,7 +35,7 @@ export default function Images() {
 
   function handleAdd() {
     if (newImageUrl !== '') {
-      setimages([newImageUrl, ...images]);
+      setImages([newImageUrl, ...images]);
 
       //input value null deger alamadıgı ıcın
       //ayrıca ınputu temızler
