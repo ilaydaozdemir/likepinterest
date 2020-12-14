@@ -11,7 +11,12 @@ export default function Images() {
   const [newImageUrl, setnewImageUrl] = useState('');
 
   function handleRemove(index) {
-    setimages(images.filter((image, i) => i !== index));
+    //setimages(images.filter((image, i) => i !== index));
+
+    setimages([
+      ...images.slice(0, index),
+      ...images.slice(index + 1, images.length),
+    ]);
   }
 
   //inner Component
