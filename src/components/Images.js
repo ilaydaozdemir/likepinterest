@@ -1,13 +1,25 @@
-import React, { useEffect, useState } from 'react';
+import Axios from 'axios';
+import React, { useEffect, useRef, useState } from 'react';
 import Image from './image';
 
 export default function Images() {
-  const [images, setimages] = useState([
-    'https://cdn.pixabay.com/photo/2020/09/17/05/19/women-5578067_960_720.jpg',
-    'https://cdn.pixabay.com/photo/2020/01/03/21/32/hoarfrost-4739176_960_720.jpg',
-    'https://cdn.pixabay.com/photo/2015/06/19/21/24/the-road-815297_960_720.jpg',
-    'https://cdn.pixabay.com/photo/2020/11/17/15/44/cup-5752775_960_720.jpg',
-  ]);
+  const [images, setimages] = useState([]);
+
+  const inputRef = useRef(null);
+  const varRef = useRef(images.length);
+
+  useEffect(() => {
+    inputRef.current.focus();
+    Axios.get(
+      'https://api.unsplash.com/photos/?client_id=VUun1OhcCeeUNBtPleDMgABTbx18eDBmyT4MgwclgpI'
+    ).then(res => {
+      setimages(res.data);
+    });
+  }, []);
+
+  useEffect(() => {
+    varRef.current = varRef.current + 1;
+  });
 
   const [newImageUrl, setnewImageUrl] = useState('');
 
@@ -24,7 +36,7 @@ export default function Images() {
   function ShowImage(params) {
     return images.map((img, index) => (
       <Image
-        image={img}
+        image={img.urls.regular}
         handleRemove={handleRemove}
         index={index}
         key={index}
@@ -50,14 +62,19 @@ export default function Images() {
 
   return (
     <section>
+      <h1>{varRef.current} Images</h1>
+      <p>Component is updated {varRef.current}times</p>
       <div className='flex  flex-wrap justify-center  mx-5 '>
         <ShowImage />
       </div>
       <div className='flex justify-between my-5 '>
         <div className='w-full'>
           {' '}
+          {/* focus */}
           <input
             type='text'
+            id='inputBox'
+            ref={inputRef}
             className='p-2 border border-gray-800 shadow rounded w-full'
             value={newImageUrl}
             onChange={handleChange}
