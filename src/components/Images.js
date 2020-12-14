@@ -26,7 +26,11 @@ export default function Images() {
     return images.map((image, index) => {
       return (
         <div className='w-1/3 my-4 flex justify-center' key={index}>
-          <div className='relative'>
+          <div
+            className='relative'
+            onMouseEnter={() => setIsHovering(index)}
+            onMouseLeave={() => setIsHovering(-1)}
+          >
             {/* icon ekleme */}
             <i
               className={`fas fa-times absolute right-0 cursor-pointer opacity-25 hover:opacity-100 ${
@@ -34,12 +38,7 @@ export default function Images() {
               }`}
               onClick={() => handleRemove(index)}
             ></i>
-            <img
-              src={image}
-              width='150'
-              onMouseEnter={() => setIsHovering(index)}
-              onMouseLeave={() => setIsHovering(-1)}
-            />
+            <img src={image} width='150' />
           </div>
         </div>
       );
