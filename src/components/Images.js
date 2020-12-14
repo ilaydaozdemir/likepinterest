@@ -20,12 +20,6 @@ export default function Images() {
   }
 
   const [isHovering, setIsHovering] = useState(false);
-  function handleMouseEnter() {
-    setIsHovering(true);
-  }
-  function handleMouseLeave() {
-    setIsHovering(false);
-  }
 
   //inner Component
   function ShowImage(params) {
@@ -43,8 +37,8 @@ export default function Images() {
             <img
               src={image}
               width='150'
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
+              onMouseEnter={() => setIsHovering(true)}
+              onMouseLeave={() => setIsHovering(false)}
             />
           </div>
         </div>
