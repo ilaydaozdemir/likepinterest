@@ -24,7 +24,13 @@ export default function Images() {
     return images.map((image, index) => {
       return (
         <div className='w-1/3 my-4 flex justify-center' key={index}>
-          <img src={image} width='150' onClick={() => handleRemove(index)} />
+          <div className='relative'>
+            <i
+              className='fas fa-times absolute right-0 cursor-pointer'
+              onClick={() => handleRemove(index)}
+            ></i>
+            <img src={image} width='150' />
+          </div>
         </div>
       );
     });
