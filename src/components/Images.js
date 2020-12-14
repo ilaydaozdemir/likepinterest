@@ -6,20 +6,15 @@ export default function Images() {
   const [images, setimages] = useState([]);
 
   const inputRef = useRef(null);
-  const varRef = useRef(images.length);
 
   useEffect(() => {
     inputRef.current.focus();
     Axios.get(
-      'https://api.unsplash.com/photos/?client_id=VUun1OhcCeeUNBtPleDMgABTbx18eDBmyT4MgwclgpI'
+      `https://api.unsplash.com/photos/?client_id=${process.env.REACT_APP_UNSPLASH_KEY}`
     ).then(res => {
       setimages(res.data);
     });
   }, []);
-
-  useEffect(() => {
-    varRef.current = varRef.current + 1;
-  });
 
   const [newImageUrl, setnewImageUrl] = useState('');
 
@@ -32,7 +27,6 @@ export default function Images() {
     ]);
   }
 
-  //inner Component
   function ShowImage(params) {
     return images.map((img, index) => (
       <Image
@@ -44,9 +38,7 @@ export default function Images() {
     ));
   }
 
-  // improve separate
   function handleAdd() {
-    //input un içi bos mu kontrol edıyorum
     if (newImageUrl !== '') {
       setimages([newImageUrl, ...images]);
 
@@ -62,8 +54,6 @@ export default function Images() {
 
   return (
     <section>
-      <h1>{varRef.current} Images</h1>
-      <p>Component is updated {varRef.current}times</p>
       <div className='flex  flex-wrap justify-center  mx-5 '>
         <ShowImage />
       </div>
