@@ -1,20 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import InfiniteScroll from 'react-infinite-scroll-component';
 import useFetchImage from '../utils/hooks/useFetchImage';
-import useScroll from '../utils/hooks/useScroll';
+
 import Image from './image';
 import Loading from './Loading';
 
 export default function Images() {
   const [page, setPage] = useState(1);
   const [images, setImages, errors, isLoading] = useFetchImage(page);
-
-  const scrollPosition = useScroll();
-
-  useEffect(() => {
-    if (scrollPosition >= document.body.offsetHeight - window.innerHeight) {
-      setPage(page + 1);
-    }
-  }, [scrollPosition]);
 
   function handleRemove(index) {
     //setimages(images.filter((image, i) => i !== index));
@@ -26,18 +19,25 @@ export default function Images() {
   }
 
   function ShowImage(params) {
-    return images.map((img, index) => (
-      <Image
-        image={img.urls.regular}
-        handleRemove={handleRemove}
-        index={index}
-        key={index}
-      />
-    ));
+    return (
+      <InfiniteScroll
+        dataLength={images.length}
+        next={() => setPage(page + 1)}
+        hasMore={true}
+        className='flex flex-wrap'
+      >
+        {images.map((img, index) => (
+          <Image
+            image={img.urls.regular}
+            handleRemove={handleRemove}
+            index={index}
+            key={index}
+          />
+        ))}
+      </InfiniteScroll>
+    );
   }
 
-  //isLoading degerı true ise
-  if (isLoading) return <Loading />;
   return (
     <section>
       {errors.length > 0 && (
@@ -46,12 +46,9 @@ export default function Images() {
         </div>
       )}
 
-      <div className='flex flex-wrap'>
-        <ShowImage />
-      </div>
-      {errors.length === 0 && (
-        <button onClick={() => setPage(page + 1)}>Load More</button>
-      )}
+      <ShowImage />
+
+      {isLoading && <Loading />}
     </section>
   );
 }
