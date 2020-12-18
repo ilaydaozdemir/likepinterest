@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import useDebounce from '../utils/hooks/useDebounce';
 import useFetchImage from '../utils/hooks/useFetchImage';
 
 import Image from './image';
@@ -42,8 +43,10 @@ export default function Images() {
     );
   }
 
+  const debounce = useDebounce();
   function handleInput(e) {
-    setSearchTerm(e.target.value);
+    const text = e.target.value;
+    debounce(() => setSearchTerm(text));
   }
 
   return (
