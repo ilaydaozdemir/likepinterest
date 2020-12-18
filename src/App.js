@@ -36,14 +36,14 @@ function App() {
   return (
     <Router>
       <Switch>
+        <Route path='/' exact={true}>
+          <Home />
+        </Route>
         <Route path='/login'>
           <Login />
         </Route>
         <Route path='/gallery'>
           <Gallery />
-        </Route>
-        <Route path='/'>
-          <Home />
         </Route>
       </Switch>
     </Router>
