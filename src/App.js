@@ -1,10 +1,10 @@
 import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import './assets/css/style.css';
 import Images from './components/Images';
 
-//fonksiyonel component
-function App() {
+function Gallery() {
   return (
     <section className='flex justify-center'>
       <div className='w-10/12'>
@@ -13,6 +13,40 @@ function App() {
         </div>
       </div>
     </section>
+  );
+}
+
+function Home() {
+  return (
+    <div className='flex h-screen'>
+      <h1 className='m-auto text-3xl'>Welcome Home</h1>
+    </div>
+  );
+}
+
+function Login() {
+  return (
+    <div className='flex h-screen'>
+      <h1 className='m-auto text-3xl'>Login Page</h1>
+    </div>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <Switch>
+        <Route path='/login'>
+          <Login />
+        </Route>
+        <Route path='/gallery'>
+          <Gallery />
+        </Route>
+        <Route path='/'>
+          <Home />
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 
