@@ -19,7 +19,7 @@ export default function Login() {
       .auth()
       .signInWithEmailAndPassword(form.email, form.password)
       .then(res => {
-        history.push('/');
+        history.replace('/'); //eskı sayfaya gerı donmesıne izin vermez
         // setIsLoggedIn(true);
         setError(''); //error is remove
         setIsLoading(false);
