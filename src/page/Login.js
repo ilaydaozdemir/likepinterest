@@ -4,6 +4,7 @@ import firebase from '../config/firebase';
 export default function Login() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
+  const [form, setForm] = useState({ email: '', password: '' });
 
   function handleForm(e) {
     if (isLoading) return;
@@ -11,15 +12,18 @@ export default function Login() {
     e.preventDefault();
     firebase
       .auth()
-      .signInWithEmailAndPassword('il.1995@hotmail.com', 'iayda')
+      .signInWithEmailAndPassword(form.email, form.password)
       .then(res => {
-        console.log(res);
         setIsLoading(false);
       })
       .catch(e => {
         setError(e.message);
         setIsLoading(false);
       });
+  }
+
+  function handleInput(e) {
+    setForm({ ...form, [e.target.name]: e.target.value });
   }
 
   return (
@@ -33,15 +37,21 @@ export default function Login() {
           <div className='w-full my-6'>
             <input
               type='email'
-              className='p-2 rounded shadow w-full'
+              className='p-2 rounded shadow w-full text-black'
               placeholder='Email or Username'
+              name='email'
+              value={form.email}
+              onChange={handleInput}
             />
           </div>
           <div className='w-full my-6'>
             <input
               type='password'
-              className='p-2 rounded shadow w-full'
+              className='p-2 rounded shadow w-full text-black'
+              name='password'
               placeholder='Password'
+              value={form.password}
+              onChange={handleInput}
             />
           </div>
           <div className='w-full my-10'>
