@@ -5,11 +5,22 @@ import firebase from '../config/firebase';
 import * as Yup from 'yup';
 
 export default function SignUp() {
+  const history = useHistory();
+
   return (
     <Formik
       initialValues={{ email: '', password: '' }}
-      onSubmit={value => {
-        console.log(value);
+      //adding new user
+      onSubmit={(value, formikBag) => {
+        firebase
+          .auth()
+          .createUserWithEmailAndPassword(value.email, value.password)
+          .then(res => {
+            history.replace('/');
+          })
+          .catch(e => {
+            formikBag.setFieldError('email', e.message);
+          });
       }}
       validationSchema={Yup.object({
         email: Yup.string().required('Email is required').email(),
