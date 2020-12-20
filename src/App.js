@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Redirect,
+  Route,
+  Switch,
+} from 'react-router-dom';
 
 import './assets/css/style.css';
 import Header from './components/Header';
@@ -27,14 +32,21 @@ function App() {
       <AppContext.Provider value={[isLoggedIn, user]}>
         <Header />
         <Switch>
-          {routes.map((route, index) => (
-            <Route
-              key={index}
-              path={route.path}
-              exact={route.exact}
-              component={route.component}
-            />
-          ))}
+          {routes.map((route, index) => {
+            //protect route
+            if (route.path === '/login') {
+              if (isLoggedIn) return <Redirect to='/' />;
+            } else {
+              return (
+                <Route
+                  key={index}
+                  path={route.path}
+                  exact={route.exact}
+                  component={route.component}
+                />
+              );
+            }
+          })}
         </Switch>
       </AppContext.Provider>
     </Router>
