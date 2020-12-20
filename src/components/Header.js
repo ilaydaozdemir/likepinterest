@@ -20,28 +20,27 @@ export default function Header() {
   }
 
   return (
-    <nav className='py-5 bg-gradient-to-r from-gray-700 via-gray-900 to-gray-700 text-white'>
+    <nav className='py-5 bg-gradient-to-r from-gray-700 via-gray-900 to-gray-700 text-white flex justify-between'>
       <ul className='flex justify-between px-10'>
-        <span className='flex'>
-          <li className='mr-5'>
-            <NavLink
-              to='/'
-              exact={true}
-              activeClassName='underline text-red-300 font-bold'
-            >
-              Home
-            </NavLink>
-          </li>
-          <li className='mr-5'>
-            <NavLink
-              to='/gallery'
-              activeClassName='underline text-red-300 font-bold'
-            >
-              Gallery
-            </NavLink>
-          </li>
-        </span>
-
+        <li className='mr-5'>
+          <NavLink
+            to='/'
+            exact={true}
+            activeClassName='underline text-red-300 font-bold'
+          >
+            Home
+          </NavLink>
+        </li>
+        <li className='mr-5'>
+          <NavLink
+            to='/gallery'
+            activeClassName='underline text-red-300 font-bold'
+          >
+            Gallery
+          </NavLink>
+        </li>
+      </ul>
+      <ul className='flex justify-between px-10'>
         <li>
           {isLoggedIn ? (
             <button onClick={logout}>Logout</button>
@@ -54,6 +53,16 @@ export default function Header() {
             </NavLink>
           )}
         </li>
+        {!isLoggedIn && (
+          <li className='ml-5'>
+            <NavLink
+              to='/signup'
+              activeClassName='underline text-red-300 font-bold'
+            >
+              SignUp
+            </NavLink>
+          </li>
+        )}
       </ul>
     </nav>
   );
