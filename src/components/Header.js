@@ -1,20 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import firebase from '../config/firebase';
+import AppContext from '../store/AppContext';
 
 export default function Header() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, user] = useContext(AppContext);
   const history = useHistory();
 
-  useEffect(() => {
-    firebase.auth().onAuthStateChanged(user => {
-      if (user) {
-        setIsLoggedIn(true);
-      }
-    });
-  }, []);
-
-  function logout(params) {
+  function logout() {
     firebase
       .auth()
       .signOut()
@@ -27,7 +20,7 @@ export default function Header() {
   }
 
   return (
-    <nav className='py-5 bg-gray-900 text-white'>
+    <nav className='py-5 bg-gradient-to-r from-gray-700 via-gray-900 to-gray-700 text-white'>
       <ul className='flex justify-between px-10'>
         <span className='flex'>
           <li className='mr-5'>
