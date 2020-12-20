@@ -16,7 +16,7 @@ import GuestRoute from './utils/routes/GuestRoute';
 
 function App() {
   const [user, setUser] = useState({});
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(null);
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged(user => {
