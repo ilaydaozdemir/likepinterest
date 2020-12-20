@@ -8,7 +8,7 @@ export default [
     path: '/',
     exact: true,
     component: () => <Home />,
-    protected: 'none',
+    protected: null,
   },
   {
     path: '/gallery',
