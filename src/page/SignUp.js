@@ -28,10 +28,7 @@ export default function SignUp() {
               type='email'
               className='p-2 rounded shadow w-full text-black'
               placeholder='Email or Username'
-              name='email'
-              value={formik.values.email}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
+              {...formik.getFieldProps('email')}
             />
             {formik.touched.email && formik.errors.email ? (
               <p>{formik.errors.email}</p>
@@ -41,11 +38,8 @@ export default function SignUp() {
             <input
               type='password'
               className='p-2 rounded shadow w-full text-black'
-              name='password'
               placeholder='Password'
-              value={formik.values.password}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
+              {...formik.getFieldProps('password')}
             />
             {formik.touched.password && formik.errors.password ? (
               <p>{formik.errors.password}</p>
