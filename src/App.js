@@ -11,6 +11,7 @@ import Header from './components/Header';
 import routes from './utils/routes';
 import firebase from './config/firebase';
 import AppContext from './store/AppContext';
+import AuthRoute from './utils/routes/AuthRoute';
 
 function App() {
   const [user, setUser] = useState({});
@@ -36,9 +37,11 @@ function App() {
             //protect route
             if (route.path === '/login') {
               if (isLoggedIn) return <Redirect to='/' />;
-            } else {
+            }
+
+            if (route.path === '/gallery') {
               return (
-                <Route
+                <AuthRoute
                   key={index}
                   path={route.path}
                   exact={route.exact}
@@ -46,6 +49,14 @@ function App() {
                 />
               );
             }
+            return (
+              <Route
+                key={index}
+                path={route.path}
+                exact={route.exact}
+                component={route.component}
+              />
+            );
           })}
         </Switch>
       </AppContext.Provider>
