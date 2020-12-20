@@ -27,13 +27,16 @@ export default function Header() {
             <NavLink
               to='/'
               exact={true}
-              activeClassName='underline text-red-300'
+              activeClassName='underline text-red-300 font-bold'
             >
               Home
             </NavLink>
           </li>
           <li className='mr-5'>
-            <NavLink to='/gallery' activeClassName='underline text-red-300'>
+            <NavLink
+              to='/gallery'
+              activeClassName='underline text-red-300 font-bold'
+            >
               Gallery
             </NavLink>
           </li>
@@ -43,7 +46,10 @@ export default function Header() {
           {isLoggedIn ? (
             <button onClick={logout}>Logout</button>
           ) : (
-            <NavLink to='/login' activeClassName='underline text-red-300'>
+            <NavLink
+              to='/login'
+              activeClassName='underline text-red-300 font-bold'
+            >
               Login
             </NavLink>
           )}

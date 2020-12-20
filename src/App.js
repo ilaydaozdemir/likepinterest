@@ -13,6 +13,7 @@ import firebase from './config/firebase';
 import AppContext from './store/AppContext';
 import AuthRoute from './utils/routes/AuthRoute';
 import GuestRoute from './utils/routes/GuestRoute';
+import NotFound from './page/404';
 
 function App() {
   const [user, setUser] = useState({});
@@ -66,6 +67,9 @@ function App() {
               />
             );
           })}
+          <Route path='*'>
+            <NotFound />
+          </Route>
         </Switch>
       </AppContext.Provider>
     </Router>
