@@ -18,7 +18,8 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.1",
     "tailwindcss": "^2.0.2",
-    "web-vitals": "^0.2.4"
+    "web-vitals": "^0.2.4",
+    "yup": "^0.32.8"
   },
   "scripts": {
     "build:css": "postcss src/assets/css/tailwind.css -o src/assets/css/style.css",

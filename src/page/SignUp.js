@@ -9,6 +9,25 @@ export default function SignUp() {
     onSubmit: value => {
       console.log(value);
     },
+
+    //submit butınuna dahı basmamıza ızın vermez
+    validate: values => {
+      const errors = {};
+      if (!values.email) {
+        errors.email = 'Email Field is Required.';
+      } else if (
+        !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)
+      ) {
+        errors.email = 'Email is invalid.';
+      }
+
+      if (!values.password) {
+        errors.password = 'Password Field is Required.';
+      } else if (!values.password.length <= 6) {
+        errors.password = 'Password must be longer than 6.';
+      }
+      return errors;
+    },
   });
   return (
     <div className='flex h-screen lg bg-gradient-to-r from-red-100 via-red-200 to-red-100'>
@@ -25,7 +44,12 @@ export default function SignUp() {
               name='email'
               value={formik.values.email}
               onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
             />
+            {formik.touched.email && formik.errors.email ? (
+              <p>{formik.errors.email}</p>
+            ) : null}
+            <p> {formik.errors.email}</p>
           </div>
           <div className='w-full my-6'>
             <input
@@ -35,7 +59,12 @@ export default function SignUp() {
               placeholder='Password'
               value={formik.values.password}
               onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
             />
+            {formik.touched.password && formik.errors.password ? (
+              <p>{formik.errors.password}</p>
+            ) : null}
+            <p> {formik.errors.password}</p>
           </div>
           <div className='w-full my-10'>
             <button
