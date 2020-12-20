@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import firebase from '../config/firebase';
 import AppContext from '../store/AppContext';
 
@@ -24,10 +24,18 @@ export default function Header() {
       <ul className='flex justify-between px-10'>
         <span className='flex'>
           <li className='mr-5'>
-            <Link to='/'>Home</Link>
+            <NavLink
+              to='/'
+              exact={true}
+              activeClassName='underline text-red-300'
+            >
+              Home
+            </NavLink>
           </li>
           <li className='mr-5'>
-            <Link to='/gallery'>Gallery</Link>
+            <NavLink to='/gallery' activeClassName='underline text-red-300'>
+              Gallery
+            </NavLink>
           </li>
         </span>
 
@@ -35,7 +43,9 @@ export default function Header() {
           {isLoggedIn ? (
             <button onClick={logout}>Logout</button>
           ) : (
-            <Link to='/login'>Login</Link>
+            <NavLink to='/login' activeClassName='underline text-red-300'>
+              Login
+            </NavLink>
           )}
         </li>
       </ul>
