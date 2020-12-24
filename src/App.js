@@ -15,6 +15,7 @@ import AuthRoute from './utils/routes/AuthRoute';
 import GuestRoute from './utils/routes/GuestRoute';
 import NotFound from './page/404';
 import { motion } from 'framer-motion';
+import AnimatedRoute from './utils/routes/AnimatedRoute';
 
 function App() {
   const [user, setUser] = useState({});
@@ -48,20 +49,16 @@ function App() {
 
             if (route.protected === 'auth') {
               return (
-                <AuthRoute
-                  key={index}
-                  path={route.path}
-                  exact={route.exact}
-                  component={route.component}
-                />
+                <AuthRoute key={index} path={route.path} exact={route.exact}>
+                  {' '}
+                  <route.component />
+                </AuthRoute>
               );
             }
             return (
-              <Route key={index} path={route.path} exact={route.exact}>
-                <motion.div initial={{ x: 200 }} animate={{ x: 0 }}>
-                  <route.component />
-                </motion.div>
-              </Route>
+              <AnimatedRoute key={index} path={route.path} exact={route.exact}>
+                <route.component />
+              </AnimatedRoute>
             );
           })}
           <Route path='*'>

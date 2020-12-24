@@ -2,11 +2,12 @@ import React, { useContext } from 'react';
 import { Redirect, Route } from 'react-router-dom';
 import AppContext from '../../store/AppContext';
 import Loading from '../../components/Loading';
+import AnimatedRoute from './AnimatedRoute';
 
-export default function AuthRoute(props) {
+export default function AuthRoute({ children, ...rest }) {
   const [isLoggedIn] = useContext(AppContext);
   if (isLoggedIn === null) return <Loading />;
-  if (isLoggedIn) return <Route {...props} />;
+  if (isLoggedIn) return <AnimatedRoute {...rest}>{children}</AnimatedRoute>;
 
   return <Redirect to='/login' />;
 }
