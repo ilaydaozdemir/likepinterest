@@ -14,6 +14,7 @@ import AppContext from './store/AppContext';
 import AuthRoute from './utils/routes/AuthRoute';
 import GuestRoute from './utils/routes/GuestRoute';
 import NotFound from './page/404';
+import { motion } from 'framer-motion';
 
 function App() {
   const [user, setUser] = useState({});
@@ -39,12 +40,9 @@ function App() {
             //protect route
             if (route.protected === 'guest') {
               return (
-                <GuestRoute
-                  key={index}
-                  path={route.path}
-                  exact={route.exact}
-                  component={route.component}
-                />
+                <GuestRoute key={index} path={route.path} exact={route.exact}>
+                  <route.component />
+                </GuestRoute>
               );
             }
 
@@ -59,12 +57,11 @@ function App() {
               );
             }
             return (
-              <Route
-                key={index}
-                path={route.path}
-                exact={route.exact}
-                component={route.component}
-              />
+              <Route key={index} path={route.path} exact={route.exact}>
+                <motion.div initial={{ x: 200 }} animate={{ x: 0 }}>
+                  <route.component />
+                </motion.div>
+              </Route>
             );
           })}
           <Route path='*'>
