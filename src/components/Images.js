@@ -35,13 +35,19 @@ export default function Images() {
           className='flex flex-wrap'
         >
           {images.map((img, index) => (
-            <Image
-              show={() => setShowPreview(img.urls.regular)}
-              image={img.urls.regular}
-              handleRemove={handleRemove}
-              index={index}
+            <motion.div
+              className='w-1/6 p-1 border flex justify-center'
               key={index}
-            />
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+            >
+              <Image
+                show={() => setShowPreview(img.urls.regular)}
+                image={img.urls.regular}
+                handleRemove={handleRemove}
+                index={index}
+              />
+            </motion.div>
           ))}
         </InfiniteScroll>
         <AnimatePresence>
