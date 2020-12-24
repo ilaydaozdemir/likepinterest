@@ -1,10 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {
-  BrowserRouter as Router,
-  Redirect,
-  Route,
-  Switch,
-} from 'react-router-dom';
+import { Redirect, Route, Switch, useLocation } from 'react-router-dom';
 
 import './assets/css/style.css';
 import Header from './components/Header';
@@ -14,8 +9,9 @@ import AppContext from './store/AppContext';
 import AuthRoute from './utils/routes/AuthRoute';
 import GuestRoute from './utils/routes/GuestRoute';
 import NotFound from './page/404';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import AnimatedRoute from './utils/routes/AnimatedRoute';
+import Loading from './components/Loading';
 
 function App() {
   const [user, setUser] = useState({});
@@ -32,11 +28,14 @@ function App() {
       }
     });
   }, []);
+
+  const location = useLocation();
+
   return (
-    <Router>
-      <AppContext.Provider value={[isLoggedIn, user]}>
-        <Header />
-        <Switch>
+    <AppContext.Provider value={[isLoggedIn, user]}>
+      <Header />
+      <AnimatePresence exitBeforeEnter initial={false}>
+        <Switch key={location.pathname} location={location}>
           {routes.map((route, index) => {
             //protect route
             if (route.protected === 'guest') {
@@ -65,8 +64,8 @@ function App() {
             <NotFound />
           </Route>
         </Switch>
-      </AppContext.Provider>
-    </Router>
+      </AnimatePresence>
+    </AppContext.Provider>
   );
 }
 
