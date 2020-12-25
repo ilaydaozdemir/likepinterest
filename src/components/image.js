@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import PropTypes from 'prop-types';
+import useTfl from '../utils/hooks/useTfl';
 
 function Image({ index, image, handleRemove, show }) {
   const [isHovering, setIsHovering] = useState(false);
+  const [predict, predictions, isLoading] = useTfl();
+  const imageRef = useRef();
 
   return (
     <div
@@ -21,9 +24,16 @@ function Image({ index, image, handleRemove, show }) {
         className={`fas fa-search absolute left-0 cursor-pointer opacity-25 hover:opacity-100 ${
           isHovering ? '' : 'hidden'
         }`}
-        onClick={() => predict(index)}
+        onClick={() => predict(imageRef.current)}
       ></i>
-      <img onClick={show} src={image} width='100%' height='auto' />
+      <img
+        ref={imageRef}
+        onClick={show}
+        src={image}
+        width='100%'
+        height='auto'
+        crossOrigin='anonymous'
+      />
     </div>
   );
 }
