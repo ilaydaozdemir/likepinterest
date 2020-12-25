@@ -31,13 +31,13 @@ export default function Tensorflow() {
           ref={imageRef}
         />
         <div className='text-center my-5'>
-          {predictions.length > 0 && (
-            <div>
-              {predictions.map(predictions => (
+          {predictions.length > 0 &&
+            predictions.map(predictions => (
+              <div className='flex justify-between'>
                 <p>{predictions.className}</p>
-              ))}
-            </div>
-          )}
+                <p>{Math.floor(predictions.probability * 100)} %</p>
+              </div>
+            ))}
 
           <button
             className='p-2 rounded shadow  bg-gradient-to-r from-gray-700 via-gray-900 to-gray-700 text-white'
