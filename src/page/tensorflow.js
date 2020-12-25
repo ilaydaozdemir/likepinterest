@@ -1,17 +1,21 @@
 import '@tensorflow/tfjs';
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import * as mobilenet from '@tensorflow-models/mobilenet';
 
 export default function Tensorflow() {
   const imageRef = useRef();
+  const [isLoading, setIsLoading] = useState(false);
+  const [predictions, setPredictions] = useState([]);
 
   function predict() {
     const img = imageRef.current;
 
+    setIsLoading(true);
+
     mobilenet.load().then(model => {
       model.classify(img).then(predictions => {
-        console.log('Predictions:');
-        console.log(predictions);
+        setPredictions(predictions);
+        setIsLoading(false);
       });
     });
   }
@@ -27,6 +31,14 @@ export default function Tensorflow() {
           ref={imageRef}
         />
         <div className='text-center my-5'>
+          {predictions.length > 0 && (
+            <div>
+              {predictions.map(predictions => (
+                <p>{predictions.className}</p>
+              ))}
+            </div>
+          )}
+
           <button
             className='p-2 rounded shadow  bg-gradient-to-r from-gray-700 via-gray-900 to-gray-700 text-white'
             onClick={predict}
