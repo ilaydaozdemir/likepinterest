@@ -13,7 +13,17 @@ function Image({ index, image, handleRemove, show }) {
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
     >
-      {/* icon ekleme */}
+      {predictions.length > 0 && (
+        <span className='absolute bg-gray-800 text-white rounded-lg shadow px-2 left-0 ml-5'>
+          {predictions.map(predictions => (
+            <div className='flex justify-between'>
+              <p>{predictions.className}</p>
+              <p>{Math.floor(predictions.probability * 100)} %</p>
+            </div>
+          ))}
+        </span>
+      )}
+
       <i
         className={`fas fa-times absolute right-0 cursor-pointer opacity-25 hover:opacity-100 ${
           isHovering ? '' : 'hidden'
