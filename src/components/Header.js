@@ -39,6 +39,15 @@ export default function Header() {
             Gallery
           </NavLink>
         </li>
+        <li className='mr-5'>
+          <NavLink
+            to='/tensorflow'
+            exact={true}
+            activeClassName='underline text-red-300 font-bold'
+          >
+            Tensorflow
+          </NavLink>
+        </li>
       </ul>
       <ul className='flex justify-between px-10'>
         <li>
