@@ -15,5 +15,5 @@ export default function useTfl() {
       });
     });
   }
-  return [predict, predictions, isLoading];
+  return [predict, predictions, setPredictions, isLoading];
 }

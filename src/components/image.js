@@ -4,7 +4,7 @@ import useTfl from '../utils/hooks/useTfl';
 
 function Image({ index, image, handleRemove, show }) {
   const [isHovering, setIsHovering] = useState(false);
-  const [predict, predictions, isLoading] = useTfl();
+  const [predict, predictions, setPredictions, isLoading] = useTfl();
   const imageRef = useRef();
 
   return (
@@ -13,8 +13,13 @@ function Image({ index, image, handleRemove, show }) {
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
     >
-      {predictions.length > 0 && (
-        <span className='absolute bg-gray-800 text-white rounded-lg shadow px-2 left-0 ml-5'>
+      {(predictions.length > 0 || isLoading) && (
+        <span
+          className='absolute bg-gray-800 text-white rounded-lg shadow px-2 left-0 ml-5'
+          onClick={() => setPredictions([])}
+        >
+          {isLoading && <p>Fetching results..</p>}
+
           {predictions.map(predictions => (
             <div className='flex justify-between'>
               <p>{predictions.className}</p>
