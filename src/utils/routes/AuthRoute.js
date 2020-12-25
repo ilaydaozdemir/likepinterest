@@ -9,5 +9,9 @@ export default function AuthRoute({ children, ...rest }) {
   if (isLoggedIn === null) return <Loading />;
   if (isLoggedIn) return <AnimatedRoute {...rest}>{children}</AnimatedRoute>;
 
-  return <Redirect to='/login' />;
+  return (
+    <AnimatedRoute>
+      <Redirect to='/login' />
+    </AnimatedRoute>
+  );
 }
