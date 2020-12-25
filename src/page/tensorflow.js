@@ -6,7 +6,7 @@ import useTfl from '../utils/hooks/useTfl';
 export default function Tensorflow() {
   const imageRef = useRef();
 
-  const [predict, predictions, isLoading] = useTfl();
+  const { predict, predictions, isLoading } = useTfl();
 
   return (
     <div className='flex justify-center '>
