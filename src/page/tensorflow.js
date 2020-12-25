@@ -1,24 +1,12 @@
 import '@tensorflow/tfjs';
-import React, { useEffect, useRef, useState } from 'react';
-import * as mobilenet from '@tensorflow-models/mobilenet';
+
+import React, { useRef } from 'react';
+import useTfl from '../utils/hooks/useTfl';
 
 export default function Tensorflow() {
   const imageRef = useRef();
-  const [isLoading, setIsLoading] = useState(false);
-  const [predictions, setPredictions] = useState([]);
 
-  function predict() {
-    const img = imageRef.current;
-
-    setIsLoading(true);
-
-    mobilenet.load().then(model => {
-      model.classify(img).then(predictions => {
-        setPredictions(predictions);
-        setIsLoading(false);
-      });
-    });
-  }
+  const [predict, predictions, isLoading] = useTfl();
 
   return (
     <div className='flex justify-center '>
@@ -41,7 +29,7 @@ export default function Tensorflow() {
 
           <button
             className='p-2 rounded shadow  bg-gradient-to-r from-gray-700 via-gray-900 to-gray-700 text-white'
-            onClick={predict}
+            onClick={() => predict(imageRef.current)}
           >
             Predict Result
           </button>
