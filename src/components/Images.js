@@ -10,7 +10,7 @@ import Loading from './Loading';
 export default function Images() {
   const [page, setPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState(null);
-  const { images, setImages, errors, isLoading } = useFetchImage(
+  const [images, setImages, errors, isLoading] = useFetchImage(
     page,
     searchTerm
   );
