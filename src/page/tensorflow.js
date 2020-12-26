@@ -11,8 +11,8 @@ export default function Tensorflow() {
   return (
     <div className='flex justify-center '>
       <div className='w-1/3'>
-        <h1 className='text-center'>Tensorflow Example</h1>
         <img
+          className='mt-5'
           src='https://images.unsplash.com/photo-1608821328028-679ca8b76080?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MXwxOTA3OTV8MHwxfGFsbHw0fHx8fHx8Mnw&ixlib=rb-1.2.1&q=80&w=1080'
           width='400'
           crossOrigin='anonymous'
