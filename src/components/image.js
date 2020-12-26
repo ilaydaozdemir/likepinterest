@@ -4,7 +4,7 @@ import useTfl from '../utils/hooks/useTfl';
 
 function Image({ index, image, handleRemove, show }) {
   const [isHovering, setIsHovering] = useState(false);
-  const [predict, predictions, setPredictions, isLoading] = useTfl();
+  const { predict, predictions, setPredictions, isLoading } = useTfl();
   const imageRef = useRef();
 
   return (

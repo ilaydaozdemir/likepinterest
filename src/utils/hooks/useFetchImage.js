@@ -39,5 +39,5 @@ export default function useFetchImage(page, searchTerm) {
     fetch();
   }, [page, searchTerm]);
 
-  return [images, setImages, errors, isLoading];
+  return { images, setImages, errors, isLoading };
 }
