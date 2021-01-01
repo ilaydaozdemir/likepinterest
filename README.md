@@ -1,6 +1,21 @@
-![alt text](https://cdn.discordapp.com/attachments/735611557370658846/793560718821031936/genel.jpg),
-![alt text](https://cdn.discordapp.com/attachments/735611557370658846/793560908453380106/buyume.jpg),
-![alt text](https://cdn.discordapp.com/attachments/735611557370658846/793561010862030848/gallery.jpg),
+# Login
+
+![alt text](https://cdn.discordapp.com/attachments/735611557370658846/793560718821031936/genel.jpg)
+
+# Gallery
+
+Gallery navigation /
+photo search /
+photo enlarge and delete
+
+![alt text](https://cdn.discordapp.com/attachments/735611557370658846/793560908453380106/buyume.jpg)
+
+# Questioning the content of the photo
+
+![alt text](https://cdn.discordapp.com/attachments/735611557370658846/793561010862030848/gallery.jpg)
+
+# Tensorflow
+
 ![alt text](https://cdn.discordapp.com/attachments/735611557370658846/793561119129993216/tensorflow.jpg),
 
 # What Did I Use
